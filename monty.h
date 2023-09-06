@@ -48,5 +48,6 @@ void swap_stack(stack_t **stack,unsigned int line_number);
 void add_stack(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
+FILE *open_file(const char *filename);
 
 #endif

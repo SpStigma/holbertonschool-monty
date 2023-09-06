@@ -18,13 +18,9 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	char *filename = argv[1];
-	FILE *file = fopen(filename, "r");
 
-	if (file == NULL)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		exit(EXIT_FAILURE);
-	}
+	FILE *file = open_file(filename);
+
 	while (fgets(ligne, sizeof(ligne), file))
 	{
 		size_t len = strlen(ligne);
@@ -36,7 +32,14 @@ int main(int argc, char **argv)
 		char *rest_of_line = strtok(NULL, " ");
 
 		if (rest_of_line != NULL)
+		{
 			PushValue = atoi(rest_of_line);
+			if (PushValue == 0)
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				exit(EXIT_FAILURE);
+			}
+		}
 
 		exec_instruction(&stack, opcode, line_number);
 		line_number++;
