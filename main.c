@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
 	char ligne[MAX_LINE];
+	char *filename = argv[1];
 	unsigned int line_number = 1;
 
 	if (argc != 2)
@@ -17,7 +18,6 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	char *filename = argv[1];
 
 	FILE *file = open_file(filename);
 
@@ -37,6 +37,8 @@ int main(int argc, char **argv)
 			if (PushValue == 0)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				fclose(file);
+				free(stack);
 				exit(EXIT_FAILURE);
 			}
 		}
