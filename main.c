@@ -28,8 +28,12 @@ int main(int argc, char **argv)
 		if (len > 0 && ligne[len - 1] == '\n')
 			ligne[len - 1] = '\0';
 
+		if (len == 0 || ligne[0] == '\0')
+		{
+			continue;
+		}		
 		char *opcode = strtok(ligne, " \t");
-		char *rest_of_line = strtok(NULL, " ");
+		char *rest_of_line = strtok(NULL, " \t");
 
 		if (rest_of_line != NULL)
 		{
