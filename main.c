@@ -37,14 +37,21 @@ int main(int argc, char **argv)
 
 		if (rest_of_line != NULL)
 		{
-			PushValue = atoi(rest_of_line);
-			if (PushValue == 0)
+			int lenght = strlen(rest_of_line);
+			int i = 0;
+
+			for( i = 0; i < lenght ; i++)
 			{
-				fprintf(stderr, "L%d: usage: push integer", line_number);
-				fclose(file);
-				free(stack);
-				exit(EXIT_FAILURE);
+				if (!isdigit(rest_of_line[i]) && rest_of_line[i] != '-')
+				{
+            		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+            		fclose(file);
+            		free(stack);
+            		exit(EXIT_FAILURE);
+				}
 			}
+			PushValue = atoi(rest_of_line);
+	
 		}
 		exec_instruction(&stack, opcode, line_number);
 		line_number++;
