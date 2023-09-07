@@ -14,7 +14,7 @@ void push_stack(stack_t **stack, unsigned int line_number)
 
 	if (New_top == NULL)
 	{
-		perror("allocation failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 

@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 		if (len > 0 && ligne[len - 1] == '\n')
 			ligne[len - 1] = '\0';
 
-		char *opcode = strtok(ligne, " ");
+		char *opcode = strtok(ligne, " \t");
 		char *rest_of_line = strtok(NULL, " ");
 
 		if (rest_of_line != NULL)
@@ -36,13 +36,12 @@ int main(int argc, char **argv)
 			PushValue = atoi(rest_of_line);
 			if (PushValue == 0)
 			{
-				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				fprintf(stderr, "L%d: usage: push integer", line_number);
 				fclose(file);
 				free(stack);
 				exit(EXIT_FAILURE);
 			}
 		}
-
 		exec_instruction(&stack, opcode, line_number);
 		line_number++;
 	}

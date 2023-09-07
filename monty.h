@@ -7,7 +7,6 @@
 #include <string.h>
 #define MAX_LINE 4086
 
-extern int PushValue;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -38,6 +37,8 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+extern int PushValue;
 
 void exec_instruction(stack_t **stack, char *opcode, unsigned int line_number);
 void push_stack(stack_t **stack, unsigned int line_number);
