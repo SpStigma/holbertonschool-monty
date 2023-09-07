@@ -39,8 +39,6 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern int PushValue;
-
 void exec_instruction(stack_t **stack, char *opcode, unsigned int line_number);
 void push_stack(stack_t **stack, unsigned int line_number);
 void pall_stack(stack_t **stack, unsigned int line_number);
@@ -51,5 +49,6 @@ void add_stack(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 FILE *open_file(const char *filename);
+int integer_valid(char *str);
 
 #endif
